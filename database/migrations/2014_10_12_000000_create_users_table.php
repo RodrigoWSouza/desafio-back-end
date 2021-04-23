@@ -19,11 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('cpf_cnpj')->unique()->index();
             $table->string('email')->unique()->index();
             $table->string('password');
-            $table->unsignedBigInteger('role_id');
-            $table->foreign('role_id')
-                    ->references('id')
-                    ->on('users')
-                    ->onDelete('cascade');
+            $table->enum('type', ['person', 'company']) ->default('person');
 
             $table->timestamps();
             $table->softDeletes();
