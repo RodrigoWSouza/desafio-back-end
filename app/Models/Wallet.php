@@ -10,7 +10,7 @@ class Wallet extends Model
         'value', 'user_id',
     ];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(user::class);
     }

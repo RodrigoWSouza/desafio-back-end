@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function wallets()
+    public function wallet()
     {
         return $this->hasOne(Wallet::class);
     }
