@@ -25,9 +25,10 @@ class TransactionFormRequest extends FormRequest
      */
     public function rules()
     {
+        $value = $this->value ? $this->value : 0.00;
         return [
             'value' => ['required','numeric','regex:/^\d+(\.\d{1,2})?$/'],
-            'payer_user_id' => ['required','exists:users,id', new PayerIsNotCompany, new PayerHasValue($this->value)],
+            'payer_user_id' => ['required','exists:users,id', new PayerIsNotCompany, new PayerHasValue($value)],
             'payee_user_id' => ['required','exists:users,id','different:payer_user_id'],
         ];
     }

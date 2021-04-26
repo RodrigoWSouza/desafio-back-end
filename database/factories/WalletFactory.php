@@ -5,6 +5,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Wallet::class, function (Faker $faker) {
     return [
-        'value' => $faker->randomFloat(2, 0, 500),
+        'value' => $faker->randomFloat(2, 10, 500),
     ];
 });
