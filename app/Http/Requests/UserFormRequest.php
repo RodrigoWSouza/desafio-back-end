@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserFormRequest extends FormRequest
 {
@@ -24,7 +25,11 @@ class UserFormRequest extends FormRequest
     public function rules()
     {
         return[
-            //
-        ]
+            'name' => 'required',
+            'cpf_cnpj' => ['required', Rule::unique('users')->ignore($this->id)],
+            'email' => ['required', Rule::unique('users')->ignore($this->id)],
+            'password' => 'required',
+            'type' => 'required'
+        ];
     }
 }
