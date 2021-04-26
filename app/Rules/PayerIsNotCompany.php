@@ -5,7 +5,7 @@ namespace App\Rules;
 use App\Models\User;
 use Illuminate\Contracts\Validation\Rule;
 
-class PayerIsCompany implements Rule
+class PayerIsNotCompany implements Rule
 {
     public function passes($attribute, $user_id)
     {
@@ -15,6 +15,6 @@ class PayerIsCompany implements Rule
 
     public function message()
     {
-        return 'The :attribute can\'t be a company.';
+        return 'The payer can\'t be a company.';
     }
 }

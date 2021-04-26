@@ -25,6 +25,6 @@ class PayerHasValue implements Rule
 
     public function message()
     {
-        return 'The :attribute need value to create this transaction.';
+        return 'The payer has no balance realize this transaction.';
     }
 }

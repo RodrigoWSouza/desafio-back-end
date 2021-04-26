@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Rules\PayerHasValue;
-use App\Rules\PayerIsCompany;
+use App\Rules\PayerIsNotCompany;
 use Illuminate\Foundation\Http\FormRequest;
 
 class TransactionFormRequest extends FormRequest
@@ -25,11 +25,10 @@ class TransactionFormRequest extends FormRequest
      */
     public function rules()
     {
-        // dd($this->value);
         return [
             'value' => ['required','numeric','regex:/^\d+(\.\d{1,2})?$/'],
-            'payer' => ['required','exists:users,id', new PayerIsCompany, new PayerHasValue($this->value)],
-            'payee' => ['required','exists:users,id','different:payer'],
+            'payer_user_id' => ['required','exists:users,id', new PayerIsNotCompany, new PayerHasValue($this->value)],
+            'payee_user_id' => ['required','exists:users,id','different:payer_user_id'],
         ];
     }
 }

@@ -4,44 +4,19 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TransactionFormRequest;
-use App\Models\Transaction;
+use App\Repository\TransactionRepositoryInterface;
 
 class TransactionsController extends Controller
 {
 
-    public function __construct(Transaction $transaction)
+    public function __construct(TransactionRepositoryInterface $transactionRepository)
     {
-        $this->transaction = $transaction;
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+        $this->transactionRepository = $transactionRepository;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(TransactionFormRequest $request)
     {
-        dd($request);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $response = $this->transactionRepository->create($request->all());
+        return $response;
     }
 }
