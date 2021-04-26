@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('payer_user_id')->references('id')->on('users');
             $table->unsignedBigInteger('payee_user_id')->references('id')->on('users');
             $table->decimal('value', 10, 2);
-            $table->string('reason');
+            $table->string('reason')->nullable();
             $table->enum('status', ['created', 'executed', 'failed'])
                     ->default('created');
             $table->timestamps();
