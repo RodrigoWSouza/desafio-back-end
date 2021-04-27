@@ -23,7 +23,7 @@ class TransactionRepository extends BaseRepository implements TransactionReposit
 
     public function create(array $attributes)
     {
-        DB::beginTransaction();;
+        DB::beginTransaction();
         try {
             $transaction = $this->model->create($attributes);
             if (!$this->authorizationService->approved($transaction->id)) {
